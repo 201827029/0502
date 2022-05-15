@@ -1,6 +1,8 @@
 #include <GLFW/glfw3.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <windows.h>
+#pragma comment(lib, "opengl32") //library 파일의 경로를 명시적으로 나타낼 때 쓰인다.
 
 static void error_callback(int error, const char* description)
 {
@@ -11,7 +13,7 @@ static void key_callback(GLFWwindow* window, int key, int scancode, int action, 
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
         glfwSetWindowShouldClose(window, GL_TRUE);
 }
-int main(void)
+int main(void)//기말
 {
     GLFWwindow* window;
     glfwSetErrorCallback(error_callback);
@@ -38,8 +40,55 @@ int main(void)
         glfwGetFramebufferSize(window, &width, &height);//프레임버퍼의 크기를 가지고 온다
         ratio = width / (float)height;
 
-        //glClearColor(0, 0, 1, 1);
-        //glClear(GL_COLOR_BUFFER_BIT);
+        glClearColor(0.96f, 1, 0.98f, 1);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        //glBegin(GL_POINTS);//점을 그린다.
+        //glColor3f(1.0f, 0.0f, 0.0f);
+        //glVertex2f(0.0f, 0.0f); //f = float
+        //glEnd();
+
+        //glBegin(GL_TRIANGLES);//점을 그린다.
+        //glColor3f(1.0f, 0.0f, 0.0f);
+        //glVertex2f(0.0f, 0.0f); //f = float
+        //glVertex2f(1.0f, 1.0f);
+        //glColor3f(0.0f, 0.0f, 0.0f);
+        //glVertex2f(1.0f, -1.0f);
+        //glEnd();
+
+        //glBegin(GL_QUADS);
+        //glColor3f(0.1f, 0.1f, 0.4f);
+        //glVertex2f(-0.1f, -0.1f); //사각형을 그리기 위해 4개의 정점을 설정한다.
+        //glVertex2f(0.1f, -0.1f);
+        //glVertex2f(0.1f, 0.1f);
+        //glVertex2f(-0.1f, 0.1f);
+        //glEnd();
+
+        if (GetAsyncKeyState(VK_SPACE) & 0x8000)
+        {
+            glBegin(GL_TRIANGLES);
+            glColor3f(0.0f, 0.0f, 1.0f);
+            glVertex2f(-0.5f, 0.3f);
+            glVertex2f(-0.5f, 0.1f);
+            glVertex2f(-0.7f, 0.1f);
+            glVertex2f(-0.5f, 0.3f);
+            glVertex2f(-0.7f, 0.3f);
+            glVertex2f(-0.7f, 0.1f);
+            glEnd();
+        }
+        else {
+            glBegin(GL_TRIANGLES);
+            glColor3f(0.0f, 0.0f, 1.0f);
+            glVertex2f(-0.5f, 0.0f);
+            glVertex2f(-0.5f, -0.2f);
+            glVertex2f(-0.7f, -0.2f);
+            glVertex2f(-0.5f, 0.0f);
+            glVertex2f(-0.7f, 0.0f);
+            glVertex2f(-0.7f, -0.2f);
+            glEnd();
+        }
+        
+        
 
         glfwSwapBuffers(window);//이전 Frame에 그려진 Buffer와 현재 Frame에 그려진 Buffer를 Swap
         glfwPollEvents();//현재 Frame의 입력 및 출력 이벤트를 모두 처리
