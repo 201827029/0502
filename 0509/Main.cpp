@@ -48,7 +48,7 @@ int main(void)//기말
         //glVertex2f(0.0f, 0.0f); //f = float
         //glEnd();
 
-        //glBegin(GL_TRIANGLES);//점을 그린다.
+        //glBegin(GL_TRIANGLES);//삼각형을 그린다.
         //glColor3f(1.0f, 0.0f, 0.0f);
         //glVertex2f(0.0f, 0.0f); //f = float
         //glVertex2f(1.0f, 1.0f);
